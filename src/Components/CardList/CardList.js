@@ -16,7 +16,7 @@ const CardList=({title}) =>{
               <CardItem title={"Botines Futbol 5"} price={7500} image={"botinesfut5.jpg"}/>
             </Grid>
             <Grid item md={3}>
-              <CardItem title={"Botines Futbol 5"} price={7500} image={"botinesfut5.jpg"}/>
+              <CardItem title={"Botines Futbol 5"} price={7500} image={"fut5blancoynegro.jpg"}/>
             </Grid>
           </Grid>
           </>

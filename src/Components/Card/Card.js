@@ -1,12 +1,12 @@
 import './Card.css'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { Button } from '@mui/material';
+import ItemCount from '../ItemCount/ItemCount'
 
 const CardItem = ({image, title, price}) => {
-    console.log("Propiedades de Card")
+
     return(
-        <Card sx={{ minWidth: 275 }}>
+        <Card sx={{ minWidth: 275 }} className="card-item-container">
             <CardContent>
                 <div className="card-item"> 
                     <div>
@@ -14,7 +14,9 @@ const CardItem = ({image, title, price}) => {
                     </div>
                     <p>{title}</p>
                     <span>$ {price}</span>
-                    <Button variant={'outlined'}> Detalle </Button>
+                    <div className='count-item'>
+                       <ItemCount stock={5} initial={1}></ItemCount>
+                     </div>  
                 </div>
             </CardContent>
         </Card>

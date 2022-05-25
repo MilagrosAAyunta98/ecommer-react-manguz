@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar/NavBar'
 
 
 function App() {
+
   return (
     <div className="App">
       <NavBar />
@@ -12,9 +13,11 @@ function App() {
       <CardList title={"Productos Recomendados"}/>
       </div>
 
+      
     </div>
 
   );
 }
 
 export default App;
+
