@@ -7,7 +7,7 @@ const Modal = ({handleClose, open, children}) => {
     return(
         <Dialog onClose={handleClose} open={open}>
             <DialogContent>
-             {children}
+            {children}
             </DialogContent>
         </Dialog>
     )
