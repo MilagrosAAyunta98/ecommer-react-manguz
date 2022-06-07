@@ -6,10 +6,12 @@ import Home from './pages/Home';
 import Detail from './pages/Detail';
 import CategoryContainer from './pages/CategoryContainer';
 import NotFound from './pages/NotFound';
+import ThemeProvider from './context/ThemeContext'
 
 function App() {
   return (
     <div className="App">
+      <ThemeProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -19,7 +21,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-
+      </ThemeProvider>
     </div>
   );
 }
