@@ -1,0 +1,9 @@
+.products-list-container {
+    width: 90%;
+    margin: 2% auto;
+}
+
+.item-list-title {
+    font-size: 2rem;
+    text-align: center;margin-top: 5%;
+}

@@ -1,22 +1,30 @@
-import './ItemCount.css'
-import { useState } from "react";
-import { Button } from "@mui/material";
+import './ItemCount.css';
+import Button from '@mui/material/Button'
 
-const ItemCount = ({ stock, initial, onAdd}) => {
-    const [count, setCount] = useState(initial);
+const ItemCount = ({stock, onAdd, quantity, setQuantity }) => {
+
+    const addOne = () => {
+        if (quantity < stock) {
+            setQuantity(prev => prev + 1)
+        }
+    }
+
     return(
-        <>
-
-        <div className='count-item'>
-            <Button onClick={() => {if(count > 1){setCount(count - 1)}}}>-</Button>
-            <p>{count}</p>
-            <Button onClick={() => {if(count <stock){ setCount(count + 1)}}}>+</Button>
+        <div className="item-count">
+            <div className="count-container">
+                <Button onClick={() => setQuantity(prev => prev - 1)} disabled={quantity === 1}>-</Button>
+                <p className="count">{quantity}</p>
+                <Button onClick={addOne}>+</Button>
+            </div>
+            <Button 
+                variant="contained" 
+                onClick={onAdd} 
+                disabled={stock === 0}
+            >
+                Agregar al Carrito
+            </Button>
         </div>
-        <Button onClick={onAdd => {if(count !=0){console.log(`Cantidad de Items a comprar: ${count}`)}} } variant='contained'>Añadir al Carrito</Button>
-        
-        </>
-
-    ) 
+    )
 }
 
 export default ItemCount
