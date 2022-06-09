@@ -7,10 +7,12 @@ import Detail from './pages/Detail';
 import CategoryContainer from './pages/CategoryContainer';
 import NotFound from './pages/NotFound';
 import ThemeProvider from './context/ThemeContext'
+import {CartProvider} from './context/CartContext'
 
 function App() {
   return (
     <div className="App">
+      <CartProvider>
       <ThemeProvider>
       <BrowserRouter>
         <NavBar />
@@ -22,6 +24,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       </ThemeProvider>
+      </CartProvider>
     </div>
   );
 }
