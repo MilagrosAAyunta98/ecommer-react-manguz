@@ -11,6 +11,10 @@
     }
 }
 
+.img-detail img{
+    height: 350px;
+}
+
 .img-detail-container {
     width: 50%;
 }

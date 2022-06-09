@@ -9,7 +9,7 @@ const ItemDetail = ({ item }) => {
             <div className="img-detail-container">
                 <p>Productos / {category}</p>
                 <div className="img-detail">
-                    <img src={image} alt={`Producto ${title}`}/>
+                    <img src={"/" + image} alt={`Producto ${title}`}/>
                 </div>
             </div>
             <div className="data-detail-container">

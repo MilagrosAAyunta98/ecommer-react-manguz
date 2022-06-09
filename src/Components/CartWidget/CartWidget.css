@@ -16,3 +16,19 @@
     text-align: center;
     line-height: 17px;
   }
+
+  .cart-prod__image img{
+    height: 250px;
+  }
+  .cart-prod__info p{
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .cart-prod__info span{
+    position:relative;
+  }
+
+  .cart-prod__action button{
+    position: static;
+  }
