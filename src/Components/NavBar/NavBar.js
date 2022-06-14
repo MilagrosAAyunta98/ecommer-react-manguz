@@ -1,13 +1,11 @@
 import './NavBar.css';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
 import CartWidget from '../CartWidget/CartWidget';
 import linksMenuProducts from '../../utils/categoriesMocks';
-import { ThemeContext } from '../../context/ThemeContext';
 
 const NavBar = () => {
-    const { darkTheme } = useContext(ThemeContext)
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -16,9 +14,6 @@ const NavBar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    console.log("info del contex desde el navbar", darkTheme)
-
     return (
         <AppBar className="nav-bar" position="static">
             <Toolbar className="nav-toolbar">
@@ -90,7 +85,7 @@ const NavBar = () => {
                             disableRipple variant="text"
                             sx={{ fontSize: 15 }}
                         >
-                            <Link className="button-link" to="/they">Nosotros</Link>
+                            <Link className="button-link" to="/contact">Contacto</Link>
                         </Button>
                     </li>
                     <li>
@@ -101,7 +96,7 @@ const NavBar = () => {
                             disableRipple variant="text"
                             sx={{ fontSize: 15 }}
                         >
-                            <Link className="button-link" to="/contact">Contacto</Link>
+                            <Link className="button-link" to="/frequentlyAskedQuestions">Preguntas Frecuentes</Link>
                         </Button>
                     </li>
                 </ul>
@@ -109,5 +104,4 @@ const NavBar = () => {
         </AppBar>
     )
 }
-
 export default NavBar

@@ -1,69 +1,24 @@
 import './CartWidget.css';
-import { useState, useContext } from 'react';
+import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import DeleteIcon from '@mui/icons-material/Delete';
-import CartContext from '../../context/CartContext'
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import CartContext from '../../context/CartContext'
 
-const CartWidget = () =>  {
-    const { cartListItems } = useContext(CartContext)
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+const CartWidget = () => {
+    const { cartItemsQuantity } = useContext(CartContext)
 
-    return(
-        <div className='cart-container-icon'>
-            <ShoppingCartIcon 
-                color={'primary'} 
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-            />
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                'aria-labelledby': 'basic-button',
-                }}
-            >
-                <div className='container-item-list-cart'>
-                    {cartListItems.length === 0 && (
-                        <>
-                            <p>No hay productos agregados al carrito</p>
-                            <Link to="/products/calzados" >Empezar a comprar</Link>
-                        </>
-                    )}
-                    {cartListItems.map( (item) => {
-                        return(
-                        <div className='item-cart-prod' key={item.id}>
-                            <div className='cart-prod__image'>
-                                <img src={`/${item.image}`} alt="prod carrito" />
-                            </div>
-                            <div className='cart-prod__info'>
-                                <p>{item.title}</p>
-                                <span>$ {item.price}</span>
-                            </div>
-                            <div className='cart-prod__action'>
-                                <button>
-                                    <DeleteIcon />
-                                </button>
-                            </div>
-                        </div>
-                        )
-                    })}
-                    
-                </div>
-            </Menu>
+    return (
+        <div className="cart-widget-container">
+            <p className={cartItemsQuantity() === 0 ? "cart-widget-empty" : "cart-widget-none"}>
+                El Carrito está Vacío!
+            </p>
+            <Button className="cart-icon-button" disableRipple>
+                <Link to='/cart'>
+                    <ShoppingCartIcon className="cart-icon" fontSize="large"/>
+                    {cartItemsQuantity() === 0 ? '' : <span className="cart-quantity">{cartItemsQuantity()}</span>}
+                </Link>
+            </Button>
         </div>
     )
 }

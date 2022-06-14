@@ -1,15 +1,24 @@
 import './ItemDetail.css';
 import ItemCount from '../ItemCount/ItemCount';
-import { Rating } from '@mui/material';
+import { Rating, Button } from '@mui/material';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ItemDetail = ({ item }) => {
     const { id, title, category, price, stock, image } = item;
+    const [quantity, setQuantity] = useState(1)
+    const [showCount, setShowCount] = useState(true)
+
+    const onAdd = () => {
+        setShowCount(false)
+    }
+
     return(
         <div className="container-item-detail">
             <div className="img-detail-container">
                 <p>Productos / {category}</p>
                 <div className="img-detail">
-                    <img src={"/" + image} alt={`Producto ${title}`}/>
+                    <img src={"/" + image} alt={title}/>
                 </div>
             </div>
             <div className="data-detail-container">
@@ -21,11 +30,29 @@ const ItemDetail = ({ item }) => {
                     <div className="data-price-detail">
                         <Rating name="no-value" value={null} />
                         <p>$ {price}</p>
-                        <p>Envios Gratis a todo el Pais</p>
+                        <p>Envio Gratis a todo el pais</p>
                     </div>
                 </div>
                 <div className="data-detail-item-count">
-                    <ItemCount stock={stock} initial={1}/>
+                    {showCount ?
+                    <ItemCount  
+                        onAdd={onAdd} 
+                        quantity={quantity}
+                        setQuantity={setQuantity}
+                        item={item}
+                    />
+                    :
+                    <div className="finish-purchase-container">
+                        <Button variant="contained">
+                            <Link 
+                                className="link-finish-purchase" 
+                                to='/cart'
+                            >
+                                Finalizar Compra
+                            </Link>
+                        </Button>
+                    </div>
+                    }
                 </div>
             </div>
             

@@ -1,8 +1,8 @@
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList';
-import { useState, useEffect } from 'react';
 import productsArray from '../../utils/productsMocks';
 import Spinner from '../Spinner/Spinner';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const ItemListContainer = () => {
@@ -24,11 +24,7 @@ const ItemListContainer = () => {
         getProducts()
         .then((res) => {
             setProducts([])
-            if(categoryId === undefined) {
-                setProducts(res)
-            }else {
-                productsFilter(res)
-            }
+            categoryId === undefined ? setProducts(res) : productsFilter(res)
         })
         .catch((err) => {
             console.log(err)
@@ -40,9 +36,7 @@ const ItemListContainer = () => {
 
     const productsFilter = (array) => {
         return array.map( (item) => {
-            if( item.category === categoryId ) {
-                return setProducts(product => [...product, item])        
-            }
+            return item.category === categoryId && setProducts(product => [...product, item])       
         })
     }
 
@@ -58,5 +52,6 @@ const ItemListContainer = () => {
         </div>
     )
 }
+
 
 export default ItemListContainer
