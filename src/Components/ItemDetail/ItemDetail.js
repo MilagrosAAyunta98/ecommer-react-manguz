@@ -33,6 +33,7 @@ const ItemDetail = ({ item }) => {
                         <p>Envio Gratis a todo el pais</p>
                     </div>
                 </div>
+                <p className="stock-product-detail">Stock: {stock}u.</p>
                 <div className="data-detail-item-count">
                     {showCount ?
                     <ItemCount  

@@ -1,14 +1,14 @@
 import './Item.css'
-import { useState } from 'react';
+import { useContext } from 'react';
 import { Button } from '@mui/material';
-import ItemCount from '../ItemCount/ItemCount';
 import { Link } from 'react-router-dom';
+import CartContext from '../../context/CartContext';
 
 
-const Item = ({ id, title, price, stock, image }) => {
-    const item = { id, title, price, stock, image }
+const Item = ({ id, title, price, stock, image, quantity }) => {
+    const item = { id, title, price, stock, image, quantity }
 
-    const [quantity, setQuantity] = useState(1)
+    const { addProductToCart } = useContext(CartContext)
 
     return (
         <div className="card-item">
@@ -20,16 +20,18 @@ const Item = ({ id, title, price, stock, image }) => {
                 </Button>
             </div>
             <div className="card-body">
-                <img src={image} alt={`Producto ${title}`} />
+                <img src={`../${image}`} alt={`Imagen - ${title}`} />
             </div>
             <div className="card-footer">
                 <p className="card-title">{title}</p>
                 <p className="card-price">${price}</p>
-                <ItemCount
-                    quantity={quantity}
-                    setQuantity={setQuantity}
-                    item={item}
-                />
+                <Button 
+                    variant="contained" 
+                    onClick={() => addProductToCart(item, 1)} 
+                    disabled={stock < 1} 
+                >
+                    {stock > 0 ? 'Agregar al Carrito' : 'Sin Stock'}
+                </Button>
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ const ItemList = ({title, items}) => {
             <h2 className="item-list-title">{title}</h2>
             <Grid container spacing={2}>
                 {
-                    items.map( ({ id, title, price, image, stock }) => {
+                    items.map( ({ id, title, price, image, stock, quantity }) => {
                         return(
                             <Grid item md={3} key={id}>
                                 <Item 
@@ -16,6 +16,7 @@ const ItemList = ({title, items}) => {
                                     price={price} 
                                     stock={stock} 
                                     image={image}  
+                                    quantity={quantity}  
                                 />
                             </Grid>
                         )
