@@ -1,6 +1,5 @@
 import './ItemDetailContainer.css';
 import { useEffect, useState } from 'react';
-import products from '../../utils/productsMocks';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
@@ -15,7 +14,7 @@ const ItemDetailContainer = () => {
     const [loadingProducts, setLoadingProducts] = useState(true)
 
     const getProduct = async () => {
-        const docRef = doc(db, "products", id)
+        const docRef = doc(db, "productos", id)
         const docSnapshot = await getDoc(docRef)
         let product = docSnapshot.data()
         product.id = docSnapshot.id
