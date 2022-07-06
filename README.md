@@ -1,6 +1,5 @@
-# Project Summary
-Manguz. is an e-commerce project that is oriented to the sale of footwear, mainly leather. It is inspired by a family business with more than 15 years of experience that did not have an e-commerce, try to show the best handmade items that we have
-For its realization, the dependency of the "material ui" library was installed, which was chosen with the purpose of learning a library other than bootstrap, which until now was the only one I knew.
+# Resumen de mi proyecto
+Hice un e-commerce basado en el emprendimiento que llevo adelante con mi esposo, tenemos una tienda en MercadoLibre donde vendemos calzado masculino de cuero vacuno, Manguz es una pymes familiar de mas de 15 años, antes de la pandemia no contaba con presencia en las redes, los diseños y las imagenes son realizados por mi, y los productos son de realizados de manera artesanal, con cosidos y pegados a mano, los materiales son 100% cuero vacuno y  contamos con 5 modelos que trate de mostrar aca, trate de seguir mis pasos y darle mis toques a lo que vi en el curso
 
 # Getting Started with Create React App
 

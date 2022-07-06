@@ -104,7 +104,7 @@ const CartContainer = () => {
                 </Button>
             </div>
             <Modal 
-                title={success ? 'Compra exitosa' : 'Formulario de contacto'} 
+                title={success ? 'Compra exitosa' : 'Formulario'} 
                 open={showModal} 
                 handleClose={() => setShowModal(false)}
             >
