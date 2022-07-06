@@ -3,9 +3,10 @@ import ItemCount from '../ItemCount/ItemCount';
 import { Rating, Button } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Slider from '../Slider/Slider'
 
 const ItemDetail = ({ item }) => {
-    const { id, title, category, price, stock, image } = item;
+    const { id, title, category, price, stock, image, description } = item;
     const [quantity, setQuantity] = useState(1)
     const [showCount, setShowCount] = useState(true)
 
@@ -18,7 +19,7 @@ const ItemDetail = ({ item }) => {
             <div className="img-detail-container">
                 <p>Productos / {category}</p>
                 <div className="img-detail">
-                    <img src={"/" + image} alt={title}/>
+                <Slider item={item} />
                 </div>
             </div>
             <div className="data-detail-container">
@@ -33,6 +34,7 @@ const ItemDetail = ({ item }) => {
                         <p>Envio Gratis a todo el pais</p>
                     </div>
                 </div>
+                <p>{description}</p>
                 <p className="stock-product-detail">Stock: {stock} u</p>
                 <div className="data-detail-item-count">
                     {showCount ?

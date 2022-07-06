@@ -15,7 +15,17 @@ import { useNavigate } from "react-router-dom"
 
 const CartContainer = () => {
     const { cartListItems, clearCart, totalCartPrice } = useContext(CartContext)
+
     const [showModal, setShowModal] = useState(false)
+    
+    const [success, setSuccess] = useState()
+
+    const navigate = useNavigate()
+
+    const finishOrder = () => {
+        navigate('/')
+    }
+
     const [formValue, setFormValue] = useState({
         name: '',
         phone: '',
@@ -31,90 +41,52 @@ const CartContainer = () => {
                 price: item.price,
             }
         } ),
+        total: totalCartPrice()
     })
-    const [success, setSuccess] = useState()
-    const navigate = useNavigate()
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(e.preventDefault())
         setOrder({...order, buyer: formValue})
         saveData({...order, buyer: formValue})
     }
 
-    //DRY = Dont Repeat Yourself
     const handleChange = (e) => {
         setFormValue({...formValue, [e.target.name]: e.target.value})
     }
 
-    const finishOrder = () => {
-        navigate('/')
-    }
-
     const saveData = async (newOrder) => {
-        const orderFirebase = collection(db, 'ordenes')
+        const orderFirebase = collection(db, 'orders')
         const orderDoc = await addDoc(orderFirebase, newOrder)
-        console.log("orden generada: ", orderDoc.id)
         setSuccess(orderDoc.id)
+        clearCart()
     }
 
     return (
         <div>
+            {console.log(order)}
             <h2 className="cart-title">Carrito de Compras</h2>
             <div className="cart-content">
-                {cartListItems.length === 0 && 
-                <div className="cart-empty">
-                    <ShoppingCartIcon fontSize="large"/>
-                    <p>Tu Carrito Está Vacío!</p>
-                </div>
+                {cartListItems.length === 0 &&
+                    <div className="cart-empty">
+                        <ShoppingCartIcon fontSize="large" />
+                        <p>Tu Carrito Está Vacío!</p>
+                    </div>
                 }
                 <CartItems />
             </div>
             {cartListItems.length !== 0 && (
                 <div>
                     <div className="cart-accions-button-container">
-                        <Button variant="contained" color="success" className='btn-custom' onClick={() => setShowModal(true)} >Comprar Ahora</Button>
-                        <Modal title={success ? 'Compra exitosa' : 'Formulario de contacto'} open={showModal} handleClose={() => setShowModal(false)}>
-            {success ? (
-                <div>
-                    La order se genero con exito!
-                    Numero de orden: {success}
-                    <button onClick={finishOrder}>Aceptar</button>
-                </div>
-            ) : (
-                <form className="form-contact" onSubmit={handleSubmit}>
-                    <TextField 
-                        id="outlined-basic" 
-                        name="name"
-                        label="Nombre y Apellido" 
-                        variant="outlined" 
-                        value={formValue.name}
-                        onChange={handleChange}
-                    />
-                    <TextField 
-                        id="outlined-basic" 
-                        name="phone"
-                        label="Telefono" 
-                        variant="outlined" 
-                        value={formValue.phone}
-                        onChange={handleChange}
-                    />
-                    <TextField 
-                        id="outlined-basic" 
-                        name="email"
-                        label="Mail" 
-                        value={formValue.email}
-                        variant="outlined" 
-                        onChange={handleChange}
-                    />
-                    <button type="submit">Enviar</button>
-                </form>
-            )}
-            
-        </Modal>                        
-                            <Button 
+                        <Button
+                            variant="contained"
+                            onClick={() => setShowModal(true)}
+                        >
+                            Comprar Ahora
+                        </Button>
+                        <Button
                             onClick={() => clearCart()}
-                            variant="contained" 
+                            variant="contained"
                             color="error"
                         >
                             Vaciar Carrito
@@ -124,16 +96,58 @@ const CartContainer = () => {
                 </div>
             )}
             <div className="continue-shopping-button-container">
-                <Button 
-                    variant="contained" 
+                <Button
+                    variant="contained"
                     color="success"
                 >
                     <Link to="/" className="continue-shopping-link">Continuar Comprando</Link>
                 </Button>
             </div>
+            <Modal 
+                title={success ? 'Compra exitosa' : 'Formulario de contacto'} 
+                open={showModal} 
+                handleClose={() => setShowModal(false)}
+            >
+                {success ? (
+                    <div>
+                        La order se genero con exito!
+                        Numero de orden: {success}
+                        <button onClick={finishOrder}>Aceptar</button>
+                    </div>
+                ) : (
+                    <form className="form-contact" onSubmit={handleSubmit}>
+                        <TextField
+                            id="outlined-basic"
+                            name="name"
+                            label="Nombre y Apellido"
+                            variant="outlined"
+                            value={formValue.name}
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            id="outlined-basic"
+                            name="phone"
+                            label="Telefono"
+                            variant="outlined"
+                            value={formValue.phone}
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            id="outlined-basic"
+                            name="email"
+                            label="Mail"
+                            value={formValue.email}
+                            variant="outlined"
+                            onChange={handleChange}
+                        />
+                        <button type="submit">Enviar</button>
+                    </form>
+                )}
+            </Modal>
         </div>
     )
 }
+
 
 
 export default CartContainer

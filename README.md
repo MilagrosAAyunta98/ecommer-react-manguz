@@ -1,3 +1,7 @@
+# Project Summary
+Manguz. is an e-commerce project that is oriented to the sale of footwear, mainly leather. It is inspired by a family business with more than 15 years of experience that did not have an e-commerce, try to show the best handmade items that we have
+For its realization, the dependency of the "material ui" library was installed, which was chosen with the purpose of learning a library other than bootstrap, which until now was the only one I knew.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

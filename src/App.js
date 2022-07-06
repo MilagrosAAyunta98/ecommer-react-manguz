@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import Cart from './pages/Cart'
 import ThemeProvider from './context/ThemeContext'
 import {CartProvider} from './context/CartContext'
+import Footer from './Components/Footer/Footer'
 
 function App() {
   return (
@@ -25,8 +26,10 @@ function App() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
+      <Footer/>
       </ThemeProvider>
       </CartProvider>
+      
     </div>
   );
 }
